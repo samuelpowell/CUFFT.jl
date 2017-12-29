@@ -2,8 +2,8 @@ import CUDAdrv
 import CUFFT
 using Base.Test
 
-dev = CuDevice(0)
-ctx = CuContext(dev)
+dev = CUDAdrv.CuDevice(0)
+ctx = CUDAdrv.CuContext(dev)
 
 @testset begin
 
@@ -99,4 +99,4 @@ ctx = CuContext(dev)
 
 end
 
-destroy!(ctx)
+CUDAdrv.destroy!(ctx)
