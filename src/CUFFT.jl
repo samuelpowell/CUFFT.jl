@@ -74,8 +74,6 @@ function plan(dest::CuArray, src::CuArray; compat::Symbol = :padding, stream=CuD
     sz = plan_size(dest, src)
     inembed = reverse(Cint[size(src)...])
     onembed = reverse(Cint[size(dest)...])
-    inembed[end] = pitchel(src)
-    onembed[end] = pitchel(dest)
     plantype = plan_dict[(eltype(src),eltype(dest))]
     lib.cufftPlanMany(p, ndims(dest), sz, inembed, 1, 1, onembed, 1, 1, plantype, 1)
     pl = Plan{eltype(src),eltype(dest),ndims(dest)}(p[1])
