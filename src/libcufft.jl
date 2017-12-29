@@ -60,7 +60,7 @@ function cufftExecZ2D(plan, idata, odata)
   checkerror(ccall( (:cufftExecZ2D, libcufft), cufftResult, (cufftHandle, Ptr{cufftDoubleComplex}, Ptr{cufftDoubleReal}), plan, idata, odata))
 end
 function cufftSetStream(plan, stream)
-    checkerror(ccall( (:cufftSetStream, libcufft), cufftResult, (cufftHandle, cuSteam_t), plan, stream))
+    checkerror(ccall( (:cufftSetStream, libcufft), cufftResult, (cufftHandle, CuStream_t), plan, stream))
 end
 function cufftSetCompatibilityMode(plan, mode)
   checkerror(ccall( (:cufftSetCompatibilityMode, libcufft), cufftResult, (cufftHandle, cufftCompatibility), plan, mode))
