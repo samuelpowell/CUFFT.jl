@@ -1,12 +1,8 @@
 module CUFFT
-#using CUDArt
-#using Compat
 using CUDAdrv
 
 import Base: convert
-# import CUDArt: destroy
-export Plan, compatibility, plan
-# "Public" but not exported: version()
+export Plan, compatibility, plan, tie
 
 include("libcufft.jl")
 const lib = LibCUFFT
@@ -17,8 +13,7 @@ end
 convert(::Type{lib.cufftHandle}, p::Plan) = p.p
 
 function destroy(p::Plan)
-     println("Destroying ", p)
-#     Base.show_backtrace(STDOUT, backtrace())
+    println("Destroying ", p)
     lib.cufftDestroy(p)
 end
 
